@@ -1,4 +1,4 @@
-const Fooditem = require("../models/foodItem");
+const Fooditem = require("../models/FoodItem");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsync = require("../middlewares/catchAsyncErrors");
 const APIFeatures = require("../utils/apiFeatures");

@@ -30,7 +30,7 @@
 // Yes. Since `deleteMany()` is used, all existing records in that collection will be removed before inserting new data. That's why seeder scripts are usually used only in **development environments**, not in production.
 
 
-const Fooditem = require("../models/foodItem");
+const Fooditem = require("../models/FoodItem");
 const dotenv = require("dotenv");
 const connectDatabase = require("../config/database");
 

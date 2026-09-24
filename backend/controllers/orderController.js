@@ -1,5 +1,5 @@
 const Order = require("../models/order");
-const FoodItem = require("../models/foodItem");
+const FoodItem = require("../models/FoodItem");
 const Cart = require("../models/cartModel");
 const { ObjectId } = require("mongodb");
 const ErrorHandler = require("../utils/errorHandler");

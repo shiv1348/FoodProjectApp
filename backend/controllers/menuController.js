@@ -34,7 +34,7 @@
 // Add item to menu
 
 
-const Menu = require("../models/menu");
+const Menu = require("../models/Menu");
 //Now we are importing ErrorHandler”
 //ErrorHandler → custom error class
 //used to create meaningful errors
