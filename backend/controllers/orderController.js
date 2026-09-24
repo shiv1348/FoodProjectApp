@@ -7,8 +7,15 @@ const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const dotenv = require("dotenv");
 
 //setting up config file
-dotenv.config({ path: "./config/config.env" });
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripeKey = process.env.STRIPE_SECRET_KEY || process.env.STRIP_SECRET_KEY;
+let stripe = null;
+if (stripeKey) {
+  try {
+    stripe = require("stripe")(stripeKey);
+  } catch (err) {
+    console.warn("⚠️ Stripe initialization warning:", err.message);
+  }
+}
 
 // Create a new order   =>  /api/v1/order/new
 exports.newOrder = catchAsyncErrors(async (req, res, next) => {
