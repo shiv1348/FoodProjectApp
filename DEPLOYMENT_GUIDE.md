@@ -61,7 +61,7 @@ git push -u origin main
 |---|---|---|
 | `PORT` | `8080` | Server port |
 | `NODE_ENV` | `PRODUCTION` | Environment mode |
-| `DB_URL` | `mongodb://shivyaduvanshi1348_db_user:8Lxue2hA1blnKQXT@ac-hiygoqh-shard-00-00.kx6iqsy.mongodb.net:27017,ac-hiygoqh-shard-00-01.kx6iqsy.mongodb.net:27017,ac-hiygoqh-shard-00-02.kx6iqsy.mongodb.net:27017/?ssl=true&replicaSet=atlas-fboihl-shard-0&authSource=admin&appName=foodapp` | MongoDB Atlas cluster |
+| `DB_URL` | `mongodb://shivyaduvanshi1348_db_user:<YOUR_MONGODB_PASSWORD>@ac-hiygoqh-shard-00-00.kx6iqsy.mongodb.net:27017,ac-hiygoqh-shard-00-01.kx6iqsy.mongodb.net:27017,ac-hiygoqh-shard-00-02.kx6iqsy.mongodb.net:27017/?ssl=true&replicaSet=atlas-fboihl-shard-0&authSource=admin&appName=foodapp` | MongoDB Atlas cluster (enter your actual Atlas password) |
 | `JWT_SECRET` | `my-jwt-super-secret-long-key` | Auth token secret |
 | `JWT_EXPIRES` | `90d` | Token expiry |
 | `CLOUDINARY_CLOUD_NAME` | `l1rgxnhz` | Cloudinary name |
