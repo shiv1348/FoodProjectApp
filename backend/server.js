@@ -1,6 +1,14 @@
-// Load environment variables FIRST before any modules
+// Load environment variables (local config.env if exists, or system environment on cloud)
 const dotenv = require("dotenv");
-dotenv.config({ path: "./config/config.env", override: true });
+const fs = require("fs");
+const path = require("path");
+
+const configPath = path.resolve(__dirname, "./config/config.env");
+if (fs.existsSync(configPath)) {
+  dotenv.config({ path: configPath });
+} else {
+  dotenv.config();
+}
 
 const http = require("http");
 const { Server } = require("socket.io");
@@ -49,6 +57,6 @@ app.set("io", io);
 // Start server
 const PORT = process.env.PORT || 8080;
 
-server.listen(PORT, () => {
-  console.log(`Server started on PORT: ${PORT} with Socket.io real-time engine`);
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server started on PORT: ${PORT} on host 0.0.0.0 with Socket.io real-time engine`);
 });

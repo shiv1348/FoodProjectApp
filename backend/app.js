@@ -49,6 +49,19 @@ app.use("/api/v1/payment", payment);
 app.use("/api/v1/payment/razorpay", razorpay);
 app.use("/api/v1/ai", ai);
 
+// Health check and root endpoints for Render / Cloud deployment
+app.get("/health", (req, res) => {
+    res.status(200).json({ status: "healthy", timestamp: new Date().toISOString() });
+});
+
+app.get("/", (req, res) => {
+    res.status(200).json({ 
+        message: "Food Delivery API is running live 🚀", 
+        health: "/health",
+        environment: process.env.NODE_ENV || "DEVELOPMENT"
+    });
+});
+
 // Global Error Handler
 app.use(errorMiddleware);
 
