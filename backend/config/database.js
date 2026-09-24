@@ -1,4 +1,12 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const dns = require("dns");
+
+// Configure public DNS resolvers to ensure mongodb+srv records resolve reliably across all ISPs/platforms
+try {
+  dns.setServers(["8.8.8.8", "1.1.1.1"]);
+} catch (e) {
+  // Ignore if custom DNS resolution is restricted
+}
 
 const connectDatabase = () => {
   if (!process.env.DB_URL) {
