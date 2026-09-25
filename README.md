@@ -1,6 +1,7 @@
 # 🍔 FoodProjectApp - Full-Stack MERN Food Delivery Platform
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://frontend-zeta-brown-h3bn8mnwqb.vercel.app)
+[![Backend Live](https://img.shields.io/badge/Backend-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://foodprojectapp-1dxq.onrender.com/health)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shiv1348/FoodProjectApp)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
@@ -15,6 +16,8 @@ A modern, production-ready Full-Stack MERN Food Delivery application featuring a
 ## 🌐 Live Deployments & Links
 
 - **Frontend (Vercel)**: [https://frontend-zeta-brown-h3bn8mnwqb.vercel.app](https://frontend-zeta-brown-h3bn8mnwqb.vercel.app)
+- **Backend API (Render)**: [https://foodprojectapp-1dxq.onrender.com](https://foodprojectapp-1dxq.onrender.com)
+- **API Health Check**: [https://foodprojectapp-1dxq.onrender.com/health](https://foodprojectapp-1dxq.onrender.com/health)
 - **GitHub Repository**: [https://github.com/shiv1348/FoodProjectApp](https://github.com/shiv1348/FoodProjectApp)
 - **Database**: MongoDB Atlas Cloud Cluster
 
