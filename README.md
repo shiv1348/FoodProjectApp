@@ -60,6 +60,7 @@ A modern, production-ready Full-Stack MERN Food Delivery application featuring a
 ### 8. 🔐 Authentication & User Profile
 - Secure JWT-based authentication with bcrypt password hashing.
 - Profile management, password updates, avatar uploads, and order history tracking.
+- Email-based forgot-password flow with single-use reset links that expire after 10 minutes.
 
 ---
 
@@ -151,7 +152,14 @@ CLOUDINARY_API_SECRET=your_api_secret
 RAZORPAY_KEY_ID=your_razorpay_key_id
 RAZORPAY_KEY_SECRET=your_razorpay_key_secret
 FRONTEND_URL=http://localhost:5173
+EMAIL_HOST=smtp.example.com
+EMAIL_PORT=587
+EMAIL_USERNAME=your_smtp_username
+EMAIL_PASSWORD=your_smtp_password
+EMAIL_FROM=no-reply@example.com
 ```
+
+Configure these SMTP values in the backend environment (including Render) for forgot-password emails to be delivered. Use credentials from your email provider; never commit real credentials.
 
 Start the backend server:
 ```bash

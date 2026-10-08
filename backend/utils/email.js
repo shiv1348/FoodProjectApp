@@ -39,15 +39,20 @@
 
 
 const nodemailer = require("nodemailer");
-const pug = require("pug");
-const htmlToText = require("html-to-text");
+
+const escapeHtml = (value) =>
+  value.replace(/[&<>"']/g, (character) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  })[character]);
 
 module.exports = class Email {
   constructor(user, url) {
-    // console.log(user);
-    console.log(process.env.EMAIL_HOST);
     this.to = user.email;
-    this.firstName = user.name.split(" ")[0];
+    this.firstName = escapeHtml(user.name.split(" ")[0]);
     this.url = url;
     this.from = `OrderIt <${process.env.EMAIL_FROM}>`;
   }
@@ -59,7 +64,8 @@ module.exports = class Email {
 
     return nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
-      port: process.env.EMAIL_PORT,
+      port: Number(process.env.EMAIL_PORT),
+      secure: Number(process.env.EMAIL_PORT) === 465,
       auth: {
         user: process.env.EMAIL_USERNAME,
         pass: process.env.EMAIL_PASSWORD,
@@ -68,19 +74,24 @@ module.exports = class Email {
   }
 
   async send(template, subject) {
-    const html = pug.renderFile(`${__dirname}/../view/${template}.pug`, {
-      firstName: this.firstName,
-      url: this.url,
-      subject,
-    });
+    if (template !== "passwordReset") {
+      throw new Error(`Unsupported email template: ${template}`);
+    }
+    const resetUrl = escapeHtml(this.url);
+    const html = `<!doctype html>
+      <html><body>
+        <p>Hi ${this.firstName},</p>
+        <p>We received a request to reset your password. This link expires in 10 minutes.</p>
+        <p><a href="${resetUrl}">Reset your password</a></p>
+        <p>If you did not request a password reset, you can ignore this email.</p>
+      </body></html>`;
 
-    // 2) Define email options
     const mailOptions = {
       from: this.from,
       to: this.to,
       subject,
       html,
-      text: htmlToText.convert(html),
+      text: `Hi ${this.firstName},\n\nWe received a request to reset your password. This link expires in 10 minutes.\n\nReset your password: ${this.url}\n\nIf you did not request a password reset, you can ignore this email.`,
     };
 
     await this.newTransport().sendMail(mailOptions);

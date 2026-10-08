@@ -70,6 +70,11 @@ git push -u origin main
 | `RAZORPAY_KEY_ID` | `rzp_test_1DP5mmOlF5G5ag` | Razorpay Sandbox Key |
 | `RAZORPAY_KEY_SECRET` | `sLgJ2R2WpLhF9eQZ7X8mN4kP` | Razorpay Sandbox Secret |
 | `FRONTEND_URL` | `https://your-frontend-app.vercel.app` | (Update after Step 3) |
+| `EMAIL_HOST` | Your email provider's SMTP host | Required for password reset emails |
+| `EMAIL_PORT` | `587` (or your provider's SMTP port) | Use `465` for implicit TLS |
+| `EMAIL_USERNAME` | Your SMTP username | Keep this secret |
+| `EMAIL_PASSWORD` | Your SMTP password/app password | Keep this secret |
+| `EMAIL_FROM` | A verified sender address | Example: `no-reply@example.com` |
 
 6. Click **Deploy Web Service**.
 7. Wait ~2 minutes until Render logs display:

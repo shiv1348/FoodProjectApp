@@ -72,6 +72,9 @@ const Login = () => {
                   required
                   placeholder="Enter your password"
                 />
+                <div className="text-right mt-2">
+                  <Link to="/users/password/forgot">Forgot password?</Link>
+                </div>
               </div>
 
               <button

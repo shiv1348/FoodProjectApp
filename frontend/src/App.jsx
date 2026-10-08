@@ -27,6 +27,8 @@ import Login from "./Components/user/Login";
 import Register from "./Components/user/Register";
 import Profile from "./Components/user/Profile";
 import UpdateProfile from "./Components/user/UpdateProfile";
+import ForgotPassword from "./Components/user/ForgotPassword";
+import ResetPassword from "./Components/user/ResetPassword";
 
 import { loadUser } from "./redux/actions/userActions";
 
@@ -73,6 +75,8 @@ function App() {
               <Route path="/users/signup" element={<Register />} />
               <Route path="/users/me" element={<Profile />} />
               <Route path="/users/me/update" element={<UpdateProfile />} />
+              <Route path="/users/password/forgot" element={<ForgotPassword />} />
+              <Route path="/users/password/reset/:token" element={<ResetPassword />} />
             </Routes>
           </div>
           <StickyCartBar />
