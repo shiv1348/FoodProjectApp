@@ -61,14 +61,13 @@ const sendToken = (user, statusCode, res) => {
   const expiresInDays = Number(
     process.env.JWT_EXPIRES_TIME || process.env.COOKIE_EXPIRES_TIME || 90
   );
-  if (!Number.isFinite(expiresInDays) || expiresInDays <= 0) {
+  const maxAge = expiresInDays * 24 * 60 * 60 * 1000;
+  if (!Number.isSafeInteger(maxAge) || maxAge <= 0) {
     throw new Error("JWT_EXPIRES_TIME must be a positive number of days");
   }
 
   const cookieOptions = {
-    expires: new Date(
-      Date.now() + expiresInDays * 24 * 60 * 60 * 1000
-    ),
+    maxAge,
     httpOnly: true,
   };
 
