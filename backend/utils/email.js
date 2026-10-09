@@ -58,14 +58,31 @@ module.exports = class Email {
   }
 
   newTransport() {
-    // if (process.env.NODE_ENV === "production") {
-    //   return 1;
-    // }
+    const requiredSettings = [
+      "EMAIL_HOST",
+      "EMAIL_PORT",
+      "EMAIL_USERNAME",
+      "EMAIL_PASSWORD",
+      "EMAIL_FROM",
+    ];
+    const missingSettings = requiredSettings.filter(
+      (setting) => !process.env[setting]
+    );
+    if (missingSettings.length > 0) {
+      throw new Error(
+        `Password reset email is not configured: missing ${missingSettings.join(", ")}`
+      );
+    }
+
+    const port = Number(process.env.EMAIL_PORT);
+    if (!Number.isInteger(port) || port < 1 || port > 65535) {
+      throw new Error("Password reset email is not configured: EMAIL_PORT is invalid");
+    }
 
     return nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
-      port: Number(process.env.EMAIL_PORT),
-      secure: Number(process.env.EMAIL_PORT) === 465,
+      port,
+      secure: port === 465,
       auth: {
         user: process.env.EMAIL_USERNAME,
         pass: process.env.EMAIL_PASSWORD,

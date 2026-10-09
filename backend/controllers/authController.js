@@ -81,7 +81,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler("Please provide your email address", 400));
     }
 
-    const user = await User.findOne({ email: email.toLowerCase() });
+    const user = await User.findOne({ email: email.trim().toLowerCase() });
     const message = "If an account exists for that email, a password reset link has been sent.";
     if (!user) {
         return res.status(200).json({ success: true, message });
@@ -101,10 +101,16 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
         const resetUrl = `${frontendUrl.replace(/\/+$/, "")}/users/password/reset/${resetToken}`;
         await new Email(user, resetUrl).sendPasswordReset();
     } catch (error) {
+        console.error("Password reset email delivery failed:", {
+            code: error.code,
+            command: error.command,
+            responseCode: error.responseCode,
+            message: error.message,
+        });
         user.passwordResetToken = undefined;
         user.passwordResetExpires = undefined;
         await user.save({ validateBeforeSave: false });
-        return next(error);
+        return next(new ErrorHandler("Unable to send the password reset email right now. Please try again later.", 500));
     }
 
     return res.status(200).json({ success: true, message });
